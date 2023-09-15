@@ -1,0 +1,15 @@
+load res/test-2.ppm test2
+vertical-flip test2 test2-vertical
+load res/test.ppm test
+brighten 10 test test-bright
+value-component test2 test2-grayscale
+value-component-color red test2-vertical test2-vertical-red
+value-component-color green test2 test2-green
+horizontal-flip test-bright test-bright-horizontal
+value-component-color blue test test-blue
+brighten -10 test-blue test-blue-darken
+save res/test2-vertical-red.ppm test2-vertical-red
+save res/test-bright-horizontal.ppm test-bright-horizontal
+save res/test-blue-darken.ppm test-blue-darken
+save res/test2-green.ppm test2-green
+save res/test2-grayscale.ppm test2-grayscale

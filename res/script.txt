@@ -1,0 +1,27 @@
+load res/whiterose.ppm ppm
+load res/whiterose.bmp bmp
+load res/whiterose.jpg jpg
+load res/whiterose.png png
+brighten 10 png png-brighten
+vertical-flip png png-vertical
+horizontal-flip bmp bmp-horizontal
+sharpen ppm ppm-sharpen
+save res/ppm-sharpen.ppm ppm-sharpen
+sepia bmp bmp-sepia
+sharpen jpg jpg-sharpen
+sharpen png png-sharpen
+save res/png-sharpen.png png-sharpen
+gaussian-blur jpg jpg-blur
+value-component jpg jpg-grayscale
+value-component-color red ppm ppm-red
+value-component-color green bmp bmp-green
+value-component-color blue jpg jpg-blue
+save res/png-brighten.ppm png-brighten
+save res/ppm-red.bmp ppm-red
+save res/bmp-sepia.bmp bmp-sepia
+save res/jpg-blur.png jpg-blur
+save res/jpg-sharpen.ppm jpg-sharpen
+save res/bmp-green.bmp bmp-green
+save res/jpg-blue.jpg jpg-blue
+save res/png-brighten.ppm png-brighten
+save res/jpg-grayscale.jpg jpg-grayscale
