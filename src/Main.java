@@ -12,7 +12,7 @@ import controller.IPGUIController;
  * this class represents the main class for running the image processing application. Takes in
  * user input and delegates to controller.
  */
-public class ImageUtil {
+public class Main {
 
   /**
    * inputs commands to perform on images.
@@ -24,7 +24,7 @@ public class ImageUtil {
     try {
       if (args.length > 0) {
         if (args[0].equalsIgnoreCase("-file")) {
-          IPController imageController = ImageUtil.processArgs(args);
+          IPController imageController = Main.processArgs(args);
 
           imageController.imageProcessing();
         }
