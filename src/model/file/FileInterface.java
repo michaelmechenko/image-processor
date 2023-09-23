@@ -3,32 +3,28 @@ package model.file;
 import model.AbstractPixel;
 
 /**
- * this class allows for reading from and writing out conventional file formats
- * and PPM files.
+ * Interface for reading and writing files
  */
 public interface FileInterface {
 
   /**
-   * reads in image and stores values of each pixel in a 2D array of Pixels.
+   * Reads an image file and stores the pixel values in a 2D array.
    * 
-   * @param filename the file path that the image to be read in is currently
-   *                 stored in
-   * @return 2D array of Pixels
-   * @throws IllegalStateException if file path is invalid (file to be loaded
-   *                               can't be found)
+   * @param filename The file path of the image to be read.
+   * @return A 2D array of pixels.
+   * @throws IllegalStateException If the file path is invalid and the file cannot
+   *                               be found.
    */
   public AbstractPixel[][] readFile(String filename) throws IllegalStateException;
 
   /**
-   * translates the 2D array of Pixels into a string that is outputted into a
-   * file, in order to
-   * save the file. allows user to save a file under a different file type than it
-   * was originally
-   * created under.
+   * Writes the 2D array of Pixels into a file, allowing the user to save the file
+   * under a different file type than it was originally created under.
    *
-   * @param board      the 2D array of Pixels for the image
-   * @param formatName the file type of the image (.ppm, .png, .bmp, or .jpg)
-   * @param filename   the file path that the image should be stored to
+   * @param board      The 2D array of Pixels for the image.
+   * @param formatName The file type of the image (.ppm, .png, .bmp, or .jpg).
+   * @param filename   The file path where the image should be stored.
+   * @throws IllegalStateException If there is an error in writing the file.
    */
   public void writeFile(AbstractPixel[][] board, String formatName, String filename)
       throws IllegalStateException;

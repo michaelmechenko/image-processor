@@ -10,24 +10,22 @@ import model.AbstractPixel;
 import model.ConvPixel;
 
 /**
- * this class allows for reading from and writing out conventional file formats,
- * specifically .jpg,
- * .png, and .bmp.
+ * This class allows for reading from and writing out PPM, PNG, BMP, and JPG
+ * files.
  */
 public class ConventionalFormats implements FileInterface {
 
   /**
-   * reads in image and stores values of each pixel in a 2D array of Pixels.
+   * Reads an image file and returns a 2D array of AbstractPixel objects
+   * representing the image.
    * 
-   * @param filename the file path that the image to be read in is currently
-   *                 stored in
-   * @return 2D array of Pixels
-   * @throws IllegalStateException if file path is invalid (file to be loaded
-   *                               can't be found)
+   * @param filename the name of the file to read
+   * @return a 2D array of AbstractPixel objects representing the image
+   * @throws IllegalStateException if the file cannot be read
    */
   public AbstractPixel[][] readFile(String filename) throws IllegalStateException {
 
-    // reads it in
+    // reads the image file
     try {
       FileInputStream fs = new FileInputStream(filename);
       BufferedImage image = ImageIO.read(fs);
@@ -35,9 +33,12 @@ public class ConventionalFormats implements FileInterface {
       int cols = image.getWidth();
       AbstractPixel[][] readArray = new AbstractPixel[rows][cols];
 
+      // iterate over each pixel in the image
       for (int row = 0; row < readArray.length; row++) {
         for (int col = 0; col < readArray[0].length; col++) {
+          // get the RGB values of the pixel
           Color rgbValues = new Color(image.getRGB(col, row));
+          // create a new ConvPixel object with the RGB values
           readArray[row][col] = new ConvPixel(rgbValues.getRed(), rgbValues.getGreen(),
               rgbValues.getBlue(), rgbValues.getAlpha());
         }
@@ -50,21 +51,25 @@ public class ConventionalFormats implements FileInterface {
   }
 
   /**
-   * translates the 2D array of Pixels into a string that is outputted into a
-   * file, in order to
-   * save the file. allows user to save a file under a different file type than it
-   * was originally
-   * created under.
+   * Translates the 2D array of Pixels into a string that is outputted into a
+   * file, in order to save the file. Allows user to save a file under a different
+   * file type than it was originally created under.
    *
    * @param board      the 2D array of Pixels for the image
    * @param formatName the file type of the image (.ppm, .png, .bmp, or .jpg)
    * @param filename   the file path that the image should be stored to
+   * @throws IllegalStateException if the file cannot be written
    */
   public void writeFile(AbstractPixel[][] board, String formatName, String filename)
       throws IllegalStateException {
     int height = board.length;
     int width = board[0].length;
+
+    // Create a new BufferedImage with the specified width and height
     BufferedImage newImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+
+    // Iterate over each pixel in the 2D array and set the corresponding RGB values
+    // in the newImage
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
         int colorRed = board[i][j].getColorValue("red");
@@ -77,8 +82,10 @@ public class ConventionalFormats implements FileInterface {
     }
 
     try {
-      // retrieve image
+      // Retrieve the output file
       File outputfile = new File(filename);
+
+      // Write the newImage to the output file using the specified formatName
       ImageIO.write(newImage, formatName, outputfile);
     } catch (IOException e) {
       throw new IllegalStateException("Can't write out provided file name");

@@ -10,7 +10,7 @@ import model.AbstractPixel;
 import model.PPMPixel;
 
 /**
- * this class allows for reading from and writing out PPM files.
+ * Represents a PPM file
  */
 public class PPM implements FileInterface {
 
@@ -31,7 +31,9 @@ public class PPM implements FileInterface {
     } catch (IOException e) {
       throw new IllegalArgumentException("File " + filename + " not found!");
     }
+
     StringBuilder builder = new StringBuilder();
+
     // read the file line by line, and populate a string. This will throw away any
     // comment lines
     while (sc.hasNextLine()) {
@@ -62,21 +64,21 @@ public class PPM implements FileInterface {
         board[row][col] = temp;
       }
     }
+
     sc.close();
 
     return board;
   }
 
   /**
-   * translates the 2D array of Pixels into a string that is outputted into a
-   * file, in order to
-   * save the file. allows user to save a file under a different file type than it
-   * was originally
-   * created under.
+   * Translates the 2D array of Pixels into a string that is outputted into a
+   * file, in order to save the file. Allows the user to save a file under a
+   * different file type than it was originally created under.
    *
    * @param board      the 2D array of Pixels for the image
    * @param formatName the file type of the image (.ppm, .png, .bmp, or .jpg)
    * @param filename   the file path that the image should be stored to
+   * @throws IllegalStateException if an error occurs while writing the file
    */
   public void writeFile(AbstractPixel[][] board, String formatName, String filename)
       throws IllegalStateException {
@@ -85,7 +87,10 @@ public class PPM implements FileInterface {
     int height = board.length;
     int width = board[0].length;
 
+    // Add header information to the output string
     output += "P3\n" + width + " " + height + "\n255\n";
+
+    // Iterate over each pixel in the board
     for (int row = 0; row < height; row++) {
       for (int col = 0; col < width; col++) {
         int red = board[row][col].getColorValue("red");
@@ -98,13 +103,18 @@ public class PPM implements FileInterface {
     }
 
     try {
+      // Create a new file and FileOutputStream
       File file = new File(filename);
       FileOutputStream fos = new FileOutputStream(file, false);
+
+      // Write the output string to the file
       fos.write(new String(output).getBytes());
+
+      // Close the FileOutputStream
       fos.close();
     } catch (IOException e) {
-      throw new IllegalStateException("");
+      // Throw an IllegalStateException if an error occurs while writing the file
+      throw new IllegalStateException("Error writing file");
     }
-
   }
 }
