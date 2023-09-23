@@ -3,14 +3,14 @@ package command;
 import model.IPModelInterface;
 
 /**
- * grayscale command: this calls the method that makes the image in grayscale in the format
- * that is compatible with the command design pattern.
+ * Command to make the image grayscale.
  */
 public class MakeGrayscale implements IPCommandInterface {
 
   /**
-   * visualizes the luma of the board by calling the method on the model that is given.
-   * @param model the image that the method is getting called on
+   * Executes the command to make the image grayscale.
+   * 
+   * @param model the image model on which the command is executed
    */
   public void goCommand(IPModelInterface model) {
     model.makeGrayscaleBoard();
