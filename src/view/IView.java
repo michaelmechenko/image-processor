@@ -8,7 +8,8 @@ package view;
 public interface IView {
 
   /**
-   * gets the commands inputted by the user from the view to the controller.
+   * Gets the commands inputted by the user from the view to the controller.
+   * 
    * @return commands inputted by a user
    */
   public String getCommand();
