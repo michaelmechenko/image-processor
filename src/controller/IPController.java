@@ -138,7 +138,7 @@ public final class IPController implements IPControllerInterface {
 
     // if model never gets re-instantiated, then it was never loaded
     if (model == null) {
-      throw new IllegalArgumentException("Image you want has not been loaded");
+      throw new IllegalArgumentException("Image has not been loaded");
     }
     return model;
   }

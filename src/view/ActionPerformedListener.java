@@ -27,11 +27,9 @@ import javax.swing.JOptionPane;
 import java.awt.Color;
 
 /**
- * this class represents the display (GUI) of the Image Processing application.
- * It uses user input
- * taken in through the controller to make changes to various pictures and can
- * change different
- * layers/versions of a picture.
+ * This class represents the display (GUI) of the Image Processing application.
+ * It uses user input taken in through the controller to make changes to various pictures and can
+ * change different layers/versions of a picture.
  */
 public class ActionPerformedListener extends JFrame implements ActionListener, IView {
 
@@ -73,7 +71,7 @@ public class ActionPerformedListener extends JFrame implements ActionListener, I
   public ActionPerformedListener(IPGUIController controller) {
     super();
     command = "";
-    setTitle("Swing features");
+    setTitle("Calculator Application");
     setSize(400, 400);
 
     this.controller = controller;
@@ -309,7 +307,7 @@ public class ActionPerformedListener extends JFrame implements ActionListener, I
         controller.imageProcessing();
 
         // Update the image label
-        imageLabel.setIcon(new ImageIcon("hello.png"));
+        imageLabel.setIcon(new ImageIcon("cat.jpeg"));
 
         // Save the current file
         command = "save" + " " + "currentfile.png" + " " + imageToBeEdited;

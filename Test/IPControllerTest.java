@@ -413,7 +413,7 @@ public class IPControllerTest {
 
     String[] args = new String[]{"-file", "testParseScript.txt"};
 
-    ImageUtil.main(args);
+    Main.main(args);
 
     //model for the test-vertical being turned red
     IPModel test2verticalrededited = new IPModel((new PPM()).readFile("test2-vertical-red.ppm"),
